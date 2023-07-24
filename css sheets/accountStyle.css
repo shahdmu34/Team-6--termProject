@@ -19,7 +19,6 @@ header{
     align-items: center;
     z-index: 100;
    
-
 }
 
 .title{
@@ -45,34 +44,4 @@ header{
     color: #fff;
 
 }
-
-
-
-
-.container-dash{
-    max-width: 1100px;
-    margin: 20px 40px ;
-    padding-top: 100px;
-   
-}
-
-.feature-dash{
-
-    padding: 50px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    flex-basis: 50%;
-    
-}
-
-@media (min-width: 900px){
-    .container-dash{
-        display:flex;
-        justify-content: space-between;
-    }
-}
-
-
-.feature-dash:nth-child(1) {background-color: #F8EEE3;}
-.feature-dash:nth-child(2) {background-color: #F8EEE3;}
 
