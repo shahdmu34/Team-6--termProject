@@ -24,7 +24,7 @@ header{
 
 .title{
     font-size: 2m;
-    color:#F0C9AC;
+    color:#DC7633;
     pointer-events: none;
     margin-right: 550px;
 }
@@ -32,7 +32,7 @@ header{
 
 .siteNav a{
     text-decoration: none ;
-    color: #F0C9AC;
+    color: #DC7633;
     padding: 6px 15px;
     border-radius:  20px;
     margin: 0 10px;
@@ -41,7 +41,7 @@ header{
 
 .siteNav a:hover,
 .siteNav a.active{
-    background: #F0C9AC;
+    background: #DC7633;
     color: #fff;
 
 }

@@ -1,78 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SplitSmart</title>
-    <link rel="stylesheet" href="css sheets/homepage.css">
+    <link rel="stylesheet" href="css sheets/loginstyle.css">
 </head>
-
 <body>
+    <h1>Registration</h1>
+    <form>
+        <label for="regUsername">Username:</label>
+        <input type="text" id="regUsername" required><br>
+        
+        <label for="regPassword">Password:</label>
+        <input type="password" id="regPassword" required><br>
+        
+        <button type="button" onclick="register()">Register</button>
+    </form>
 
-    <header>
-      
-            <h1 class="title">SplitSmart</h1>
-            <nav class="siteNav">
-                
-                    <!--account page will ask for profile information-->
-                    <a href="accountpage.html">Account</a>
-                    <a href="index.html">Dashboard</a>
-                   
-                    <a href="#">Log Out</a>
-               
-            </nav>
-       
-    </header>
+    <h1>Login</h1>
+    <form>
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required><br>
+        
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required><br>
+        
+        <button type="button" onclick="login()">Login</button>
+    </form>
+    <div id="message"></div>
 
+    <script>
+        function register() {
+            // Get the values from the registration form
+            var regUsername = document.getElementById("regUsername").value;
+            var regPassword = document.getElementById("regPassword").value;
+            
+            // Check username and password requirements
+            if (!isUsernameValid(regUsername) || !isPasswordValid(regPassword)) {
+                document.getElementById("message").innerHTML = "Invalid username or password. Please try again.";
+                return;
+            }
+            
+            // Store the credentials in local storage
+            localStorage.setItem("username", regUsername);
+            localStorage.setItem("password", regPassword);
+            
+            // Show registration success message (you can redirect to the login page here)
+            document.getElementById("message").innerHTML = "Registration successful! You can now login.";
+        }
 
-    <div class="container-dash">
-        <div class="feature-dash">
+        function isUsernameValid(username) {
+            // Minimum 5 characters, 1 letter, and 1 number
+            var usernameRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+            return usernameRegex.test(username);
+        }
 
-            <!--balance (updates when new payments made)-->
-            <div class="balance">
-                <p> Current Balance: #</p>
-            </div>
+        function isPasswordValid(password) {
+            // Minimum 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return passwordRegex.test(password);
+        }
 
-            <a href="index.html">Dashboard</a> <br>
-            <!--ADD THE REPORT BUTTON FEATURE 
-            - have open a pop-up window or a new page and ask for custom report or everything and display it!-->
-            <button class="report-btn">Generate report</button>
-
-            <!--create new group feature ( allow them to name the grouo and add members - new page when the click on the button)--->
-            <div class="group">
-                <p>Create New Group</p>
-
-
-            </div>
-
-            <!-- similar to create a new group (popup window to invite friends - ask for email, name and invite button)-->
-            <div class="friends">
-                <p>Invite Friends</p>
-            </div>
-
-
-
-
-
-        </div>
-
-
-        <div class="feature-dash">
-
-            <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
-            <P>
-                Add the create expense feature here!!
-            </P>
-        </div>
-    </div>
-
-    
-    <script type="text/javascript">
-
-
-    </script> 
-
-
+        function login() {
+            // Get the values from the login form
+            var loginUsername = document.getElementById("loginUsername").value;
+            var loginPassword = document.getElementById("loginPassword").value;
+            
+            // No validation needed for login, proceed with login
+            // Retrieve the stored credentials from local storage
+            var storedUsername = localStorage.getItem("username");
+            var storedPassword = localStorage.getItem("password");
+            
+            // Check if the entered credentials match the stored ones
+            if (loginUsername === storedUsername && loginPassword === storedPassword) {
+                // Successful login
+                document.getElementById("message").innerHTML = "Login successful! Redirecting to the dashboard...";
+                // Redirect to the dashboard or another page
+                window.location.href = "dashboard.html";
+            } else {
+                // Failed login
+                document.getElementById("message").innerHTML = "Invalid username or password. Please try again.";
+            }
+        }
+    </script>
 </body>
 </html>

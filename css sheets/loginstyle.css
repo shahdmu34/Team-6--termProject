@@ -1,0 +1,21 @@
+body{
+    background: #F8EEE3;
+    min-height: 100vh;
+   overflow-x: hidden;
+   overflow-y: scroll;
+   
+}
+
+h1{
+    font-size: 2m;
+    color:#DC7633;
+    pointer-events: none;
+    margin-right: 550px;
+}
+
+/*form style*/
+form{
+    background-color: #F8EEE3;
+    padding:30px 40px;
+}
+
