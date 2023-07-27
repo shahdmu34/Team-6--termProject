@@ -30,24 +30,16 @@
             <h1>Account Profile</h1>
             <p>Edit Account</p>
             <form>
-                <label for="fname" class="label-form">First name:</label><br>
-                <input type="text" id="fname" name="fname"  placeholder="First name"><br>
-                <label for="lname"class="label-form">Last name:</label><br>
-                <input type="text" id="lname" name="lname"  placeholder="Last name"><br>
+                <label for="first-name" class="label-form">First name:</label><br>
+                <input type="text" id="fname" name="First name"  placeholder="First name"><br>
+                <label for="last-name"class="label-form">Last name:</label><br>
+                <input type="text" id="lname" name="Last name"  placeholder="Last name"><br>
                 <label for="email" class="label-form">Email address:</label><br>
-                <input type="email" id="email" name="email"  placeholder="Email"><br>
+                <input type="email" id="email" name="Email"  placeholder="Email"><br>
                 <label for="number" class="label-form">Phone number</label><br>
-                <input type="number" id="number" name="number"  placeholder="Phone number"><br>
-
-            
-
-
-              <p>Change password</p>
-              
-                <label for="password-update" class="label-form">New password:</label><br>
-                <input type="password" id="password" name="password"  placeholder="Password"><br>
+                <input type="number" id="number" name="Number"  placeholder="Phone number"><br>
                 <input type="submit" id="submit" name="submit"><br>
-              </form>
+            </form>
         </div>
 
 
@@ -137,9 +129,22 @@
     </div>
 
 
-
+<!--stroing the user profile information-->
     <script type="text/javascript">
-        
+
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(form);
+            const obj = Object.fromEntries(fd);
+
+            const json = JSON.stringify(obj);
+            localStorage.setItem('form', json);
+
+            window.location.href = "profileInformation.html";
+
+        })
 
     </script> 
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitSmart</title>
+    <link rel="stylesheet" href="css sheets/profileInfo.css">
+</head>
+
+<body>
+
+    
+
+    <header>
+      
+            <h1 class="title">SplitSmart</h1>
+            <nav class="siteNav">
+                
+                    <!--account page will ask for profile information-->
+                    <a href="accountpage.html">Account</a>
+                    <a href="index.html">Dashboard</a>
+                    <a href="#">Log Out</a>
+               
+            </nav>
+       
+    </header>
+
+    <div class="container">
+        <main>
+            <h1>Checking Profile Information</h1>
+            <div class="data" id="data"></div>
+           
+            <br>
+            <button class="btn" id="btn">Confirm</button>
+        </main>
+    </div>
+
+
+
+    <script>
+       const json = localStorage.getItem('form');
+        const obj = JSON.parse(json);
+
+        for (const key in obj) {
+            const markup = `
+            <div>
+                <span>${key}: ${obj[key]}</span>
+            </div>
+            `;
+            document.getElementById('data').innerHTML += markup;
+        }
+
+        const confirmButton = document.getElementById('btn');
+    confirmButton.addEventListener('click', () => {
+        // Redirect to index.html
+        window.location.href = 'index.html';
+    });
+    </script>
+</body>
+</html>
