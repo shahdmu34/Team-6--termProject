@@ -13,9 +13,62 @@ h1{
     margin-right: 550px;
 }
 
+
+
 /*form style*/
 form{
     background-color: #F8EEE3;
     padding:30px 40px;
 }
 
+
+
+.label-form{
+    position:absolute;
+    height: 0;
+    width: 0;
+    overflow: hidden ;
+    
+}
+
+
+input[type="text"],
+input[type="password"]
+{
+    width: 35%;
+    display:block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+   
+    margin-bottom: 15px;
+    border: 1px solid #FFF;
+    outline: none;
+}
+input[type="text"]:focus,
+input[type="password"]:focus{
+    border: 1px solid #F0B27A;
+    box-shadow: inset 2px 2px 2px rgba(0,0,0, .13);
+}
+
+
+
+.btn {
+
+    width: 35%;
+    display: block;
+    box-sizing: border-box;
+    background-color: #F0B27A;
+    color: rgb(255, 255, 255);
+    padding: 10px 0;
+    border: 1px solid #D35400;
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.btn:hover,
+.btn:focus{
+    border-color: #F0B27A;
+    background-color: #FAE5D3;
+}
