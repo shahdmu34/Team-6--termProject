@@ -6,14 +6,42 @@ body{
    
 }
 
+header{
+    position: absolute;
+    top:0;
+    left: 10px;
+    width: 100%;
+    
+    padding: 30px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 100;
+   
+}
 h1{
     font-size: 2m;
     color:#DC7633;
     pointer-events: none;
-    margin-right: 550px;
+    
+    text-align: center;
 }
 
+.title{
+    font-size: 2m;
+    color:#DC7633;
+    pointer-events: none;
+    margin-right: 1000px;
 
+}
+
+.login-center{
+    
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  padding-top: 100px;
+}
 
 /*form style*/
 form{
@@ -35,7 +63,7 @@ form{
 input[type="text"],
 input[type="password"]
 {
-    width: 35%;
+    width: 100%;
     display:block;
     box-sizing: border-box;
     padding: 0 10px;
@@ -55,7 +83,7 @@ input[type="password"]:focus{
 
 .btn {
 
-    width: 35%;
+    width: 100%;
     display: block;
     box-sizing: border-box;
     background-color: #F0B27A;

@@ -1,6 +1,5 @@
 body{
-    background: #F8EEE3
-    ;
+    background: #F8EEE3;
     min-height: 100vh;
    overflow-x: hidden;
    overflow-y: scroll;
@@ -25,12 +24,13 @@ header{
     font-size: 2m;
     color:#DC7633;
     pointer-events: none;
-    margin-right: 550px;
+    margin-right: 700px;
 }
 
 
 .siteNav a{
     text-decoration: none ;
+    
     color: #DC7633;
     padding: 6px 15px;
     border-radius:  20px;
