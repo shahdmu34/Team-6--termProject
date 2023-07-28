@@ -52,7 +52,9 @@
                 <div class="content">
                     <div class="close-btn" onclick="togglePopup2()">&times;</div>
                     <h1>General Report</h1>
-                    <!-- add general report -->
+
+                    <div id="expenseListPopup2"></div>
+                    
                 </div>
             </div>
 
@@ -61,7 +63,25 @@
                 <div class="content">
                     <div class="close-btn" onclick="togglePopup3()">&times;</div>
                     <h1>Custom Report</h1>
-                    <!-- add custom report -->
+                    <form>
+                        <div class="form-field">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        
+                    </form>
+
+                    <button onclick="togglePopup4()" class="popup-btn">Generate</button>
+                </div>
+            </div>
+
+            <div class="popup" id="popup-4">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup4()">&times;</div>
+                    <h1>Custom Report</h1>
+                    
                 </div>
             </div>
 
@@ -131,13 +151,20 @@
         //report popup function
         function togglePopup(){
             document.getElementById("popup-1").classList.toggle("active");
+            displayExpenses();
         }
 
         function togglePopup2(){
             document.getElementById("popup-2").classList.toggle("active");
+            displayExpensesPopup2(); 
+            
         }
         function togglePopup3(){
             document.getElementById("popup-3").classList.toggle("active");
+        }
+        function togglePopup4(){
+            document.getElementById("popup-4").classList.toggle("active");
+            
         }
 
 
@@ -182,6 +209,27 @@
         });
     }
 
+    function displayExpensesPopup2() {
+        const expenseListPopup2 = document.getElementById('expenseListPopup2');
+        expenseListPopup2.innerHTML = '';
+
+        expenses.forEach((expense) => {
+            const expenseItem = document.createElement('div');
+            expenseItem.innerHTML = `
+                <p>Amount: $${expense.amount}</p>
+                <p>Sent to: ${expense.person}</p>
+                <p>Date: ${expense.date}</p>
+                <p>Description: ${expense.description}</p>
+                <p>Approval Status: Pending</p>
+                <hr>
+            `;
+
+            expenseListPopup2.appendChild(expenseItem);
+        });
+    }
+
+    
+   
     </script>
 
 

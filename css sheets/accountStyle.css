@@ -48,8 +48,11 @@ header{
 
 .profile-information{
     max-width: 1100px;
-    margin: 20px 40px ;
-    padding-top: 100px;
+    margin: 100px auto 90px auto;
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 20px;
    
 }
 
@@ -70,8 +73,8 @@ header{
 }
 
 
-.container-profile:nth-child(1) {background-color: #F8EEE3;}
-.container-profile:nth-child(2) {background-color: #F8EEE3;}
+.container-profile:nth-child(1) {background-color: #fff;}
+.container-profile:nth-child(2) {background-color: #fff;}
 
 
 /*form style*/
