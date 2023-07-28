@@ -31,7 +31,7 @@
 
                 <!--balance (updates when new payments made)-->
                 <div class="balance">
-                    <p> Current Balance: #</p>
+                    <p> Current Balance: <span id="currentBalance">0</span></p>
                 </div>
 
                             <!-- REPORT FEATURE -->
@@ -145,6 +145,19 @@
         </div>
     </div>
 
+    <!-- JavaScript to update the balance value -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
+            const balanceValue = localStorage.getItem("balanceValue");
+
+            // Update the HTML element with the current balance value
+            const currentBalanceElement = document.getElementById("currentBalance");
+            if (currentBalanceElement && balanceValue !== null) {
+                currentBalanceElement.textContent = balanceValue;
+            }
+        });
+    </script>
 
     <script type="text/javascript">
 
