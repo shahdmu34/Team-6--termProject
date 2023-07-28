@@ -11,17 +11,17 @@
 <body>
 
     <header>
-
+      
             <h1 class="title">SplitSmart</h1>
             <nav class="siteNav">
-
+                
                     <!--account page will ask for profile information-->
                     <a href="accountpage.html">Account</a>
                     <a href="dashboard.html">Dashboard</a>
                     <a href="#">Log Out</a>
-
+               
             </nav>
-
+       
     </header>
 
     <div class="dashboard-page">
@@ -34,10 +34,42 @@
                     <p> Current Balance: #</p>
                 </div>
 
-            <a href="index.html">Dashboard</a> <br>
-            <!--ADD THE REPORT BUTTON FEATURE 
-            - have open a pop-up window or a new page and ask for custom report or everything and display it!-->
-            <button class="report-btn">Generate report</button>
+                            <!-- REPORT FEATURE -->
+            <!-- have open a pop-up window or a new page and ask for custom report or everything and display it! -->
+            <div class="popup" id="popup-1">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup()">&times;</div>
+                    <h1>Customer Report</h1>
+                    <p>View all expense report.</p>
+                    <button onclick="togglePopup2()" class="popup-btn">General Report</button>
+                    <button onclick="togglePopup3()" class="popup-btn">Custom Report</button>
+                </div>
+            </div>
+
+            <div class="popup" id="popup-2">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup2()">&times;</div>
+                    <h1>General Report</h1>
+                    <!-- add general report -->
+                </div>
+            </div>
+
+            <div class="popup" id="popup-3">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup3()">&times;</div>
+                    <h1>Custom Report</h1>
+                    <!-- add custom report -->
+                </div>
+            </div>
+
+            <div class="call-out">
+                <button onclick="togglePopup()" class="popup-btn">Generate Report</button>
+            </div>
+            <!-- end of report feature -->
+
 
                 <!--create new group feature ( allow them to name the grouo and add members - new page when the click on the button)--->
                 <div class="group">
@@ -60,52 +92,21 @@
 
             <div class="feature-dash">
 
-            <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
-            <P>
-                Add the create expense feature here!!
-            </P>
+                <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
+                <P>
+                    Add the create expense feature here!!
+                </P>
+            </div>
         </div>
     </div>
 
-
+    
     <script type="text/javascript">
-      const expenses = [];
 
-      document.getElementById('expenseForm').addEventListener('submit', function (event){
-        event.preventDefault();
-
-        const amount= parseFloat(document.getElementById('amount').value);
-        const person= document.getElementbyId('person').value);
-        const date = document.getElementById('date').value);
-        const description = document.getElementById('description').value;
-
-        expenses.push({
-          amount,
-          person,
-          date,
-          description
-        });
-
-        document.getElementById('expenseForm').reset();
-
-        displayExpenses();
-      });
-
-      function displayExpenses() {
-        const expenseList=document.getElementById('expenseList');
-        expenseList.innerHTML = '';
-
-        expenses.forEach((expense)=>{
-          const expenseItem = document.createElement('div');
-          expenseItem.innerHTML = '
-          <p>Amount: $${expense.amount}</p>
-          <p>Sent to: ${expense.person}</p>
-          <p>Date: ${expense.date}</p>
-          <p>Description: ${expense.description}</p>
-          <p>Approval Status: Pending</p>
-          <hr>
-          ';
-
+        //report popup function
+        function togglePopup(){
+            document.getElementById("popup-1").classList.toggle("active");
+        }
 
         function togglePopup2(){
             document.getElementById("popup-2").classList.toggle("active");
