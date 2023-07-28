@@ -24,52 +24,96 @@
        
     </header>
 
+    <div class="dashboard-page">
 
-    <div class="container-dash">
-        <div class="feature-dash">
+        <div class="container-dash">
+            <div class="feature-dash">
 
-            <!--balance (updates when new payments made)-->
-            <div class="balance">
-                <p> Current Balance: #</p>
+                <!--balance (updates when new payments made)-->
+                <div class="balance">
+                    <p> Current Balance: #</p>
+                </div>
+
+                                <!-- REPORT FEATURE -->
+                <!-- have open a pop-up window or a new page and ask for custom report or everything and display it! -->
+                <div class="popup" id="popup-1">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup()">&times;</div>
+                        <h1>Customer Report</h1>
+                        <p>View all expense report.</p>
+                        <button onclick="togglePopup2()" class="popup-btn">General Report</button>
+                        <button onclick="togglePopup3()" class="popup-btn">Custom Report</button>
+                    </div>
+                </div>
+
+                <div class="popup" id="popup-2">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup2()">&times;</div>
+                        <h1>General Report</h1>
+                        <!-- add general report -->
+                    </div>
+                </div>
+
+                <div class="popup" id="popup-3">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup3()">&times;</div>
+                        <h1>Custom Report</h1>
+                        <!-- add custom report -->
+                    </div>
+                </div>
+
+                <div class="call-out">
+                    <button onclick="togglePopup()" class="popup-btn">Generate Report</button>
+                </div>
+                <!-- end of report feature -->
+
+
+                <!--create new group feature ( allow them to name the grouo and add members - new page when the click on the button)--->
+                <div class="group">
+                    <p>Create New Group</p>
+
+
+                </div>
+
+                <!-- similar to create a new group (popup window to invite friends - ask for email, name and invite button)-->
+                <div class="friends">
+                    <p>Invite Friends</p>
+                </div>
+
+
+
+
+
             </div>
 
-            <a href="index.html">Dashboard</a> <br>
-            <!--ADD THE REPORT BUTTON FEATURE 
-            - have open a pop-up window or a new page and ask for custom report or everything and display it!-->
-            <button class="report-btn">Generate report</button>
 
-            <!--create new group feature ( allow them to name the grouo and add members - new page when the click on the button)--->
-            <div class="group">
-                <p>Create New Group</p>
+            <div class="feature-dash">
 
-
+                <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
+                <P>
+                    Add the create expense feature here!!
+                </P>
             </div>
-
-            <!-- similar to create a new group (popup window to invite friends - ask for email, name and invite button)-->
-            <div class="friends">
-                <p>Invite Friends</p>
-            </div>
-
-
-
-
-
-        </div>
-
-
-        <div class="feature-dash">
-
-            <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
-            <P>
-                Add the create expense feature here!!
-            </P>
         </div>
     </div>
 
     
     <script type="text/javascript">
 
+        //report popup function
+        function togglePopup(){
+            document.getElementById("popup-1").classList.toggle("active");
+        }
 
+        function togglePopup2(){
+            document.getElementById("popup-2").classList.toggle("active");
+        }
+        function togglePopup3(){
+            document.getElementById("popup-3").classList.toggle("active");
+        }
     </script> 
 
 
