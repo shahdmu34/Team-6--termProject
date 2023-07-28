@@ -35,7 +35,7 @@
                 </div>
 
                             <!-- REPORT FEATURE -->
-            <!-- have open a pop-up window or a new page and ask for custom report or everything and display it! -->
+           
             <div class="popup" id="popup-1">
                 <div class="overlay"></div>
                 <div class="content">
@@ -96,7 +96,26 @@
                 <P>
                     Add the create expense feature here!!
                 </P>
-            </div>
+
+                <P>Expense Mangagement</P>
+                <form id ="expenseForm">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" required><br>
+
+                <label for="person">Sent to:</label>
+                <input type="text" id="person" name="person" required><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>:<br>
+
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required><br>
+
+                <button type="submit">Submit Expense</button>
+                </form>
+                <!--display expenses and approval status optional? -->
+                <div id="expenseList"></div>
+                </div>
         </div>
     </div>
 
@@ -114,6 +133,49 @@
         function togglePopup3(){
             document.getElementById("popup-3").classList.toggle("active");
         }
+
+
+
+        const expenses = [];
+
+      document.getElementById('expenseForm').addEventListener('submit', function (event){
+        event.preventDefault();
+
+        const amount= parseFloat(document.getElementById('amount').value);
+        const person= document.getElementbyId('person').value);
+        const date = document.getElementById('date').value);
+        const description = document.getElementById('description').value;
+
+        expenses.push({
+          amount,
+          person,
+          date,
+          description
+        });
+
+        document.getElementById('expenseForm').reset();
+
+        displayExpenses();
+      });
+
+      function displayExpenses() {
+        const expenseList=document.getElementById('expenseList');
+        expenseList.innerHTML = '';
+
+        expenses.forEach((expense)=>{
+          const expenseItem = document.createElement('div');
+          expenseItem.innerHTML = '
+          <p>Amount: $${expense.amount}</p>
+          <p>Sent to: ${expense.person}</p>
+          <p>Date: ${expense.date}</p>
+          <p>Description: ${expense.description}</p>
+          <p>Approval Status: Pending</p>
+          <hr>
+          ';
+
+          expenseList.appendChild(expenseItem);
+        });
+      }
     </script> 
 
 
