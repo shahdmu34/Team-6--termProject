@@ -163,3 +163,66 @@ header{
 
 
   /*end of report popup*/
+
+
+  /*create expense*/
+
+  form {
+    background-color: #F8EEE3;
+    padding: 30px 40px;
+}
+
+.form-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    flex: 0 0 120px;
+    font-size: 100%;
+}
+
+.form-field input,
+.form-field select {
+    flex: 1;
+    font-family: Tahoma, sans-serif;
+    font-size: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+    margin-left: 10px;
+    border: 1px solid #FFF;
+    outline: none;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    border: 1px solid #F0B27A;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .13);
+}
+
+input[type="submit"] {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    background-color: #F0B27A;
+    color: rgb(255, 255, 255);
+    padding: 10px 0;
+    border: 1px solid #D35400;
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    border-color: #F0B27A;
+    background-color: #FAE5D3;
+}
+
+
+
+
+  /*end of create expense*/

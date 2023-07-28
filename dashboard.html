@@ -11,17 +11,17 @@
 <body>
 
     <header>
-      
+
             <h1 class="title">SplitSmart</h1>
             <nav class="siteNav">
-                
+
                     <!--account page will ask for profile information-->
                     <a href="accountpage.html">Account</a>
                     <a href="dashboard.html">Dashboard</a>
                     <a href="#">Log Out</a>
-               
+
             </nav>
-       
+
     </header>
 
     <div class="dashboard-page">
@@ -35,7 +35,7 @@
                 </div>
 
                             <!-- REPORT FEATURE -->
-           
+
             <div class="popup" id="popup-1">
                 <div class="overlay"></div>
                 <div class="content">
@@ -93,33 +93,39 @@
             <div class="feature-dash">
 
                 <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
-                <P>
-                    Add the create expense feature here!!
-                </P>
 
-                <P>Expense Mangagement</P>
-                <form id ="expenseForm">
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" required><br>
-
-                <label for="person">Sent to:</label>
-                <input type="text" id="person" name="person" required><br>
-
-                <label for="date">Date:</label>
-                <input type="date" id="date" required>:<br>
-
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" required><br>
-
-                <button type="submit">Submit Expense</button>
+                <h2>Expense Mangagement</h2>
+                <form id="expenseForm">
+                    <div class="form-field">
+                        <label for="amount" class="label-form">Amount:</label>
+                        <input type="number" id="amount" required placeholder="Amount">
+                    </div>
+                
+                    <div class="form-field">
+                        <label for="person" class="label-form">Sent to:</label>
+                        <input type="text" id="person" name="person" required placeholder="Sent to">
+                    </div>
+                
+                    <div class="form-field">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                
+                    <div class="form-field">
+                        <label for="description" class="label-form">Description:</label>
+                        <input type="text" id="description" name="description" required placeholder="Description">
+                    </div>
+                
+                    <input type="submit" name="submit" id="submit">
                 </form>
+                
                 <!--display expenses and approval status optional? -->
                 <div id="expenseList"></div>
                 </div>
         </div>
     </div>
 
-    
+
     <script type="text/javascript">
 
         //report popup function
@@ -135,48 +141,48 @@
         }
 
 
+         const expenses = [];
 
-        const expenses = [];
-
-      document.getElementById('expenseForm').addEventListener('submit', function (event){
+        document.getElementById('expenseForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const amount= parseFloat(document.getElementById('amount').value);
-        const person= document.getElementbyId('person').value);
-        const date = document.getElementById('date').value);
+        const amount = parseFloat(document.getElementById('amount').value);
+        const person = document.getElementById('person').value;
+        const date = document.getElementById('date').value;
         const description = document.getElementById('description').value;
 
         expenses.push({
-          amount,
-          person,
-          date,
-          description
+            amount,
+            person,
+            date,
+            description
         });
 
         document.getElementById('expenseForm').reset();
 
         displayExpenses();
-      });
+    });
 
-      function displayExpenses() {
-        const expenseList=document.getElementById('expenseList');
+    function displayExpenses() {
+        const expenseList = document.getElementById('expenseList');
         expenseList.innerHTML = '';
 
-        expenses.forEach((expense)=>{
-          const expenseItem = document.createElement('div');
-          expenseItem.innerHTML = '
-          <p>Amount: $${expense.amount}</p>
-          <p>Sent to: ${expense.person}</p>
-          <p>Date: ${expense.date}</p>
-          <p>Description: ${expense.description}</p>
-          <p>Approval Status: Pending</p>
-          <hr>
-          ';
+        expenses.forEach((expense) => {
+            const expenseItem = document.createElement('div');
+            expenseItem.innerHTML = `
+                <p>Amount: $${expense.amount}</p>
+                <p>Sent to: ${expense.person}</p>
+                <p>Date: ${expense.date}</p>
+                <p>Description: ${expense.description}</p>
+                <p>Approval Status: Pending</p>
+                <hr>
+            `;
 
-          expenseList.appendChild(expenseItem);
+            expenseList.appendChild(expenseItem);
         });
-      }
-    </script> 
+    }
+
+    </script>
 
 
 </body>
