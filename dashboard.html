@@ -63,14 +63,10 @@
                 <div class="content">
                     <div class="close-btn" onclick="togglePopup3()">&times;</div>
                     <h1>Custom Report</h1>
-                    <form>
-                        <div class="form-field">
-                            <label for="date">Date:</label>
-                            <input type="date" id="date" required>
-                        </div>
-
-                        
-                    </form>
+                    <div class="form-field">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required>
+                    </div>
 
                     <button onclick="togglePopup4()" class="popup-btn">Generate</button>
                 </div>
@@ -81,6 +77,7 @@
                 <div class="content">
                     <div class="close-btn" onclick="togglePopup4()">&times;</div>
                     <h1>Custom Report</h1>
+                    <div id="generateReport"></div>
                     
                 </div>
             </div>
@@ -145,19 +142,7 @@
         </div>
     </div>
 
-    <!-- JavaScript to update the balance value -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
-            const balanceValue = localStorage.getItem("balanceValue");
-
-            // Update the HTML element with the current balance value
-            const currentBalanceElement = document.getElementById("currentBalance");
-            if (currentBalanceElement && balanceValue !== null) {
-                currentBalanceElement.textContent = balanceValue;
-            }
-        });
-    </script>
+    
 
     <script type="text/javascript">
 
@@ -177,49 +162,51 @@
         }
         function togglePopup4(){
             document.getElementById("popup-4").classList.toggle("active");
-            
+            generateReport();
         }
 
 
-         const expenses = [];
+        const expenses = [];
 
-        document.getElementById('expenseForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+    document.getElementById('expenseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        const amount = parseFloat(document.getElementById('amount').value);
-        const person = document.getElementById('person').value;
-        const date = document.getElementById('date').value;
-        const description = document.getElementById('description').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    const person = document.getElementById('person').value;
+    const date = document.getElementById('date').value;
+    const description = document.getElementById('description').value;
 
-        expenses.push({
-            amount,
-            person,
-            date,
-            description
-        });
-
-        document.getElementById('expenseForm').reset();
-
-        displayExpenses();
+    expenses.push({
+        amount,
+        person,
+        date,
+        description
     });
 
+    document.getElementById('expenseForm').reset();
+
+    displayExpenses();
+});
+
+    
+
     function displayExpenses() {
-        const expenseList = document.getElementById('expenseList');
-        expenseList.innerHTML = '';
+    const expenseList=document.getElementById('expenseList');
+    expenseList.innerHTML = '';
 
-        expenses.forEach((expense) => {
-            const expenseItem = document.createElement('div');
-            expenseItem.innerHTML = `
-                <p>Amount: $${expense.amount}</p>
-                <p>Sent to: ${expense.person}</p>
-                <p>Date: ${expense.date}</p>
-                <p>Description: ${expense.description}</p>
-                <p>Approval Status: Pending</p>
-                <hr>
-            `;
+    expenses.forEach((expense)=>{
+        const expenseItem = document.createElement('div');
+        expenseItem.innerHTML = `
+        <p>Amount: $${expense.amount}</p>
+        <p>Sent to: ${expense.person}</p>
+        <p>Date: ${expense.date}</p>
+        <p>Description: ${expense.description}</p>
+        <p>Approval Status: Pending</p>
+        <hr>
+        `;
 
-            expenseList.appendChild(expenseItem);
-        });
+        expenseList.appendChild(expenseItem);
+    });
     }
 
     function displayExpensesPopup2() {
@@ -241,7 +228,35 @@
         });
     }
 
+    //generating a custom report
     
+    function generateReport() {
+    const chosenDate = document.getElementById('date').value;
+
+    if (!chosenDate) {
+        alert('Please choose a date before generating the report.');
+        return;
+    }
+
+    const matchingExpenses = expenses.filter(expense => expense.date === chosenDate);
+
+    if (matchingExpenses.length === 0) {
+        alert('No expenses found for the chosen date.');
+    } else {
+        displayExpenses(matchingExpenses);
+    }
+}
+    //balance feature
+    document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
+            const balanceValue = localStorage.getItem("balanceValue");
+
+            // Update the HTML element with the current balance value
+            const currentBalanceElement = document.getElementById("currentBalance");
+            if (currentBalanceElement && balanceValue !== null) {
+                currentBalanceElement.textContent = balanceValue;
+            }
+        });
    
     </script>
 

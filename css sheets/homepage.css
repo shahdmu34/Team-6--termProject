@@ -121,7 +121,7 @@ header{
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: #F8EEE3;
-    width: auto; 
+    width: 400px; 
     height: auto;
     max-width: 90%; 
     max-height: 90%; 
