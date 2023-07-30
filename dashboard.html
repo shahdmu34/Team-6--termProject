@@ -142,6 +142,8 @@
         // Split the members input by commas and trim whitespace from each
         var members = membersInput.split(",").map((member) => member.trim());
 
+        // Add your group creation logic here (e.g., store the group data, add members to the group, etc.)
+        // For this example, we'll just log the data to the console and update the groups array
         console.log("Group Name:", groupName);
         console.log("Members:", members);
 
@@ -151,11 +153,11 @@
             members: members
         });
 
-        // Close the popup after creating the group
-        closeCreateGroupPopup();
-
         // Update the group list displayed on the dashboard
         updateGroupList();
+
+        // Close the popup after creating the group
+        closeCreateGroupPopup();
     }
 
     // Function to update the group list displayed on the dashboard
@@ -172,7 +174,11 @@
 
     // Hide the create group popup on page load
     document.getElementById("createGroupPopup").style.display = "none";
+
+    // Call updateGroupList() on page load to display existing groups
+    updateGroupList();
 </script>
+
 
 
 
