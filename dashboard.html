@@ -90,8 +90,8 @@
 
                 <button onclick="openCreateGroupPopup()">Create a New Group</button>
                 <!--create new group feature ( allow them to name the group and add members - new page when the click on the button)--->
-                <div id="createGroupPopup" class="popup">
-        <div class="popup-content">
+        <div id="createGroupPopup" class="popup">
+            <div class="popup-content">
             <span class="close" onclick="closeCreateGroupPopup()">&times;</span>
             <h2>Create a New Group</h2>
             <form onsubmit="createGroup(); return false;">
@@ -108,12 +108,12 @@
 
     <script>
         function openCreateGroupPopup() {
-    document.getElementById("createGroupPopup").style.display = "block";
+            document.getElementById("createGroupPopup").style.display = "block";
 }
 
 // Function to close the create group popup
-function closeCreateGroupPopup() {
-    document.getElementById("createGroupPopup").style.display = "none";
+        function closeCreateGroupPopup() {
+            document.getElementById("createGroupPopup").style.display = "none";
 }
 
 // Function to create a new group
