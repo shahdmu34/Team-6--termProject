@@ -108,8 +108,17 @@
     </div>
 </div>
 
+<!-- Section to display the list of groups -->
+<div id="groupList">
+    <h3>Your Groups:</h3>
+    <!-- Groups will be dynamically added here -->
+</div>
+
 <script>
     // JavaScript code for the dashboard page
+
+    // Array to store the groups
+    var groups = [];
 
     // Function to open the create group popup
     function openCreateGroupPopup() {
@@ -119,6 +128,9 @@
     // Function to close the create group popup
     function closeCreateGroupPopup() {
         document.getElementById("createGroupPopup").style.display = "none";
+        // Reset input fields to empty strings after closing the popup
+        document.getElementById("groupName").value = "";
+        document.getElementById("members").value = "";
     }
 
     // Function to create a new group
@@ -130,16 +142,40 @@
         // Split the members input by commas and trim whitespace from each
         var members = membersInput.split(",").map((member) => member.trim());
 
+        // Add your group creation logic here (e.g., store the group data, add members to the group, etc.)
+        // For this example, we'll just log the data to the console and update the groups array
         console.log("Group Name:", groupName);
         console.log("Members:", members);
 
+        // Update the groups array with the new group
+        groups.push({
+            name: groupName,
+            members: members
+        });
+
         // Close the popup after creating the group
         closeCreateGroupPopup();
+
+        // Update the group list displayed on the dashboard
+        updateGroupList();
+    }
+
+    // Function to update the group list displayed on the dashboard
+    function updateGroupList() {
+        var groupListDiv = document.getElementById("groupList");
+        groupListDiv.innerHTML = "<h3>Your Groups:</h3>";
+        for (var i = 0; i < groups.length; i++) {
+            var group = groups[i];
+            var groupInfo = document.createElement("div");
+            groupInfo.innerHTML = "<strong>Group Name:</strong> " + group.name + "<br><strong>Members:</strong> " + group.members.join(", ");
+            groupListDiv.appendChild(groupInfo);
+        }
     }
 
     // Hide the create group popup on page load
     document.getElementById("createGroupPopup").style.display = "none";
 </script>
+
 
 
                 <!-- similar to create a new group (popup window to invite friends - ask for email, name and invite button)-->
