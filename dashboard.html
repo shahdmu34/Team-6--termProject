@@ -65,10 +65,11 @@
                     <h1>Custom Report</h1>
                     <div class="form-field">
                         <label for="date">Date:</label>
-                        <input type="date" id="date" required>
+                        <input type="date" id="date-custom" required>
                     </div>
 
-                    <button onclick="togglePopup4()" class="popup-btn">Generate</button>
+<!-- Update the onclick attribute for the Generate button -->
+                <button onclick="generateReport()" class="popup-btn" id="generateBtn">Generate</button>
                 </div>
             </div>
 
@@ -109,7 +110,7 @@
 
             <div class="feature-dash">
 
-                <!--create an  expense section (expenses need to have the description, amouont, date, person sent to , and optional image and split%)-->
+                <!---->
 
                 <h2>Expense Mangagement</h2>
                 <form id="expenseForm">
@@ -131,6 +132,11 @@
                     <div class="form-field">
                         <label for="description" class="label-form">Description:</label>
                         <input type="text" id="description" name="description" required placeholder="Description">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="split" class="label-form">Split %:</label>
+                        <input type="number" id="split" name="split" required placeholder="Split %">
                     </div>
                 
                     <input type="submit" name="submit" id="submit">
@@ -154,98 +160,126 @@
 
         function togglePopup2(){
             document.getElementById("popup-2").classList.toggle("active");
-            displayExpensesPopup2(); 
+            displayExpensesPopup2();  //displays all reports
             
         }
         function togglePopup3(){
             document.getElementById("popup-3").classList.toggle("active");
         }
-        function togglePopup4(){
-            document.getElementById("popup-4").classList.toggle("active");
-            generateReport();
+        function togglePopup4() {
+        const popup4 = document.getElementById("popup-4");
+        popup4.classList.toggle("active");
+
+        //clears and closes the generate report popup
+        const generateReportDiv = document.getElementById('generateReport');
+        generateReportDiv.innerHTML = '';
         }
 
 
-        const expenses = [];
+        // create expense feature
+        const expenses = [];     //holds expense data
 
-    document.getElementById('expenseForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+        document.getElementById('expenseForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+            //retreive expense details
+        const amount = parseFloat(document.getElementById('amount').value);
+        const person = document.getElementById('person').value;
+        const date = document.getElementById('date').value;
+        const description = document.getElementById('description').value;
 
-    const amount = parseFloat(document.getElementById('amount').value);
-    const person = document.getElementById('person').value;
-    const date = document.getElementById('date').value;
-    const description = document.getElementById('description').value;
+        expenses.push({
+            amount,
+            person,
+            date,
+            description
+        });
 
-    expenses.push({
-        amount,
-        person,
-        date,
-        description
+        document.getElementById('expenseForm').reset();
+
+        displayExpenses();
     });
-
-    document.getElementById('expenseForm').reset();
-
-    displayExpenses();
-});
 
     
+        //displays the expense
+            function displayExpenses() {
+            const expenseList=document.getElementById('expenseList');
+            expenseList.innerHTML = '';
 
-    function displayExpenses() {
-    const expenseList=document.getElementById('expenseList');
-    expenseList.innerHTML = '';
-
-    expenses.forEach((expense)=>{
-        const expenseItem = document.createElement('div');
-        expenseItem.innerHTML = `
-        <p>Amount: $${expense.amount}</p>
-        <p>Sent to: ${expense.person}</p>
-        <p>Date: ${expense.date}</p>
-        <p>Description: ${expense.description}</p>
-        <p>Approval Status: Pending</p>
-        <hr>
-        `;
-
-        expenseList.appendChild(expenseItem);
-    });
-    }
-
-    function displayExpensesPopup2() {
-        const expenseListPopup2 = document.getElementById('expenseListPopup2');
-        expenseListPopup2.innerHTML = '';
-
-        expenses.forEach((expense) => {
-            const expenseItem = document.createElement('div');
-            expenseItem.innerHTML = `
+            expenses.forEach((expense)=>{
+                const expenseItem = document.createElement('div');
+                expenseItem.innerHTML = `
                 <p>Amount: $${expense.amount}</p>
                 <p>Sent to: ${expense.person}</p>
                 <p>Date: ${expense.date}</p>
                 <p>Description: ${expense.description}</p>
                 <p>Approval Status: Pending</p>
                 <hr>
+                `;
+
+                expenseList.appendChild(expenseItem);
+            });
+            }
+
+            function displayExpensesPopup2() {
+                const expenseListPopup2 = document.getElementById('expenseListPopup2');
+                expenseListPopup2.innerHTML = '';
+
+                expenses.forEach((expense) => {
+                    const expenseItem = document.createElement('div');
+                    expenseItem.innerHTML = `
+                        <p>Amount: $${expense.amount}</p>
+                        <p>Sent to: ${expense.person}</p>
+                        <p>Date: ${expense.date}</p>
+                        <p>Description: ${expense.description}</p>
+                        <p>Approval Status: Pending</p>
+                        <hr>
+                    `;
+
+                    expenseListPopup2.appendChild(expenseItem);
+                });
+            }
+
+            
+            
+        // Generating a custom report
+        function generateReport() {
+        const chosenDate = document.getElementById('date-custom').value;
+
+        if (!chosenDate) {       //message for no date entered
+            alert('Please choose a date before generating the report.');
+            return;
+        }
+
+        const matchingExpenses = expenses.filter(expense => expense.date === chosenDate); 
+        //looks for a date match
+        if (matchingExpenses.length === 0) {
+            alert('No expenses found for the chosen date.');
+        } else {
+            displayReport(matchingExpenses);
+            document.getElementById("popup-4").classList.toggle("active"); // Show the report popup
+        }
+        }
+
+        //displays the custom date report
+        function displayReport(expenses) {
+        const generateReportDiv = document.getElementById('generateReport');
+        generateReportDiv.innerHTML = '<h2>Custom Report</h2>';
+
+        expenses.forEach((expense) => {
+            const expenseItem = document.createElement('div');
+            expenseItem.innerHTML = `
+            <p>Amount: $${expense.amount}</p>
+            <p>Sent to: ${expense.person}</p>
+            <p>Date: ${expense.date}</p>
+            <p>Description: ${expense.description}</p>
+            <p>Approval Status: Pending</p>
+            <hr>
             `;
 
-            expenseListPopup2.appendChild(expenseItem);
+            generateReportDiv.appendChild(expenseItem);
         });
-    }
+        }
 
-    //generating a custom report
-    
-    function generateReport() {
-    const chosenDate = document.getElementById('date').value;
-
-    if (!chosenDate) {
-        alert('Please choose a date before generating the report.');
-        return;
-    }
-
-    const matchingExpenses = expenses.filter(expense => expense.date === chosenDate);
-
-    if (matchingExpenses.length === 0) {
-        alert('No expenses found for the chosen date.');
-    } else {
-        displayExpenses(matchingExpenses);
-    }
-}
     //balance feature
     document.addEventListener("DOMContentLoaded", function() {
             // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
