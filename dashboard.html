@@ -88,53 +88,56 @@
             </div>
             <!-- end of report feature -->
 
-                <!-- Button to open the create group popup -->
-    <button onclick="openCreateGroupPopup()">Create a New Group</button>
+<!-- Button to open the create group popup -->
+<button onclick="openCreateGroupPopup()">Create a New Group</button>
 
-    <!-- The create group popup -->
-    <div id="createGroupPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeCreateGroupPopup()">&times;</span>
-            <h2>Create a New Group</h2>
-            <form onsubmit="createGroup(); return false;">
-                <label for="groupName">Group Name:</label>
-                <input type="text" id="groupName" required><br>
+<!-- The create group popup -->
+<div id="createGroupPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeCreateGroupPopup()">&times;</span>
+        <h2>Create a New Group</h2>
+        <form onsubmit="createGroup(); return false;">
+            <label for="groupName">Group Name:</label>
+            <input type="text" id="groupName" required><br>
 
-                <label for="members">Add Members (comma-separated usernames):</label>
-                <input type="text" id="members" required><br>
+            <label for="members">Add Members (comma-separated usernames):</label>
+            <input type="text" id="members" required><br>
 
-                <button type="submit">Create Group</button>
-            </form>
-        </div>
+            <button type="submit">Create Group</button>
+        </form>
     </div>
+</div>
 
-    <script src="dashboard.js"></script>
+<script>
+    // JavaScript code for the dashboard page
 
-    <script>
-        function openCreateGroupPopup() {
-            document.getElementById("createGroupPopup").style.display = "block";
-}
+    // Function to open the create group popup
+    function openCreateGroupPopup() {
+        document.getElementById("createGroupPopup").style.display = "block";
+    }
 
-// Function to close the create group popup
-        function closeCreateGroupPopup() {
-            document.getElementById("createGroupPopup").style.display = "none";
-}
+    // Function to close the create group popup
+    function closeCreateGroupPopup() {
+        document.getElementById("createGroupPopup").style.display = "none";
+    }
 
-// Function to create a new group
-function createGroup() {
-    // Get the values from the form
-    var groupName = document.getElementById("groupName").value;
-    var membersInput = document.getElementById("members").value;
+    // Function to create a new group
+    function createGroup() {
+        // Get the values from the form
+        var groupName = document.getElementById("groupName").value;
+        var membersInput = document.getElementById("members").value;
 
-    // Split the members input by commas and trim whitespace from each
-    var members = membersInput.split(",").map((member) => member.trim());
-    
-    console.log("Group Name:", groupName);
-    console.log("Members:", members);
+        // Split the members input by commas and trim whitespace from each
+        var members = membersInput.split(",").map((member) => member.trim());
 
-    // Close the popup after creating the group
-    closeCreateGroupPopup();
-    </script>
+        console.log("Group Name:", groupName);
+        console.log("Members:", members);
+
+        // Close the popup after creating the group
+        closeCreateGroupPopup();
+    }
+</script>
+
 
                 <!-- similar to create a new group (popup window to invite friends - ask for email, name and invite button)-->
                 <div class="friends">
