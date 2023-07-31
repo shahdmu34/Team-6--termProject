@@ -18,24 +18,18 @@
                     <!--account page will ask for profile information-->
                     <a href="accountpage.html">Account</a>
                     <a href="dashboard.html">Dashboard</a>
-                    <a href="#">Log Out</a>
-
+                    <a href="#" onclick="logout()">Log Out</a>
             </nav>
-
     </header>
 
     <div class="dashboard-page">
-
         <div class="container-dash">
             <div class="feature-dash">
-
                 <!--balance (updates when new payments made)-->
                 <div class="balance">
                     <p> Current Balance: <span id="currentBalance">0</span></p>
                 </div>
-
                             <!-- REPORT FEATURE -->
-
             <div class="popup" id="popup-1">
                 <div class="overlay"></div>
                 <div class="content">
@@ -46,7 +40,6 @@
                     <button onclick="togglePopup3()" class="popup-btn">Custom Report</button>
                 </div>
             </div>
-
             <div class="popup" id="popup-2">
                 <div class="overlay"></div>
                 <div class="content">
@@ -57,7 +50,6 @@
                     
                 </div>
             </div>
-
             <div class="popup" id="popup-3">
                 <div class="overlay"></div>
                 <div class="content">
@@ -360,8 +352,8 @@
         });
         }
 
-    //balance feature
-    document.addEventListener("DOMContentLoaded", function() {
+        //balance feature
+        document.addEventListener("DOMContentLoaded", function() {
             // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
             const balanceValue = localStorage.getItem("balanceValue");
 
@@ -371,6 +363,14 @@
                 currentBalanceElement.textContent = balanceValue;
             }
         });
+
+        function logout(){
+            //clear user data 
+            localStorage.removeItem("username");
+            localStorage.removeItem("password");
+            //redirect to index page
+            window.location.href = "index.html";
+        }
    
     </script>
 
