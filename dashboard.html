@@ -221,7 +221,9 @@
     <footer>Group: Shahd Mustafa, Mike Nasser, Nathaniel Leonardo, Hassan Radwan, Hussen Al-Jubury</footer>
 
 
+
     <script type="text/javascript">
+
 
         //report popup function
         function togglePopup(){
@@ -246,7 +248,7 @@
         generateReportDiv.innerHTML = '';
         }
         
-
+        let currentBalance = 0; 
 
         // create expense feature
         const expenses = [];     //holds expense data
@@ -258,6 +260,7 @@
         const person = document.getElementById('person').value;
         const date = document.getElementById('date').value;
         const description = document.getElementById('description').value;
+        const split = parseFloat(document.getElementById('split').value);
 
         expenses.push({
             amount,
@@ -266,6 +269,10 @@
             description
         });
 
+        const splitAmount = amount * (split/100);
+        currentBalance += splitAmount;
+        localStorage.setItem("currentBalance", currentBalance);
+        
         document.getElementById('expenseForm').reset();
 
         displayExpenses();
@@ -354,13 +361,16 @@
 
         //balance feature
         document.addEventListener("DOMContentLoaded", function() {
-            // Retrieve the balance value from local storage (you should replace "balanceValue" with the key used to store the balance)
-            const balanceValue = localStorage.getItem("balanceValue");
+            //retrieve the balance value from local storage
+            const storedCurrentBalance = localStorage.getItem("currentBalance");
+            if (storedCurrentBalance !== null) {
+            currentBalance = parseFloat(storedCurrentBalance);
+            }
 
-            // Update the HTML element with the current balance value
+            //update the HTML element with the current balance value
             const currentBalanceElement = document.getElementById("currentBalance");
-            if (currentBalanceElement && balanceValue !== null) {
-                currentBalanceElement.textContent = balanceValue;
+            if (currentBalanceElement) {
+                currentBalanceElement.textContent = currentBalance.toFixed(2); //sShow only up to two decimal places
             }
         });
 
